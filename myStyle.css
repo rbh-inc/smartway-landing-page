@@ -1,7 +1,11 @@
 .comp-logo {
   width: 40px;
 }
-.logo {
+.logo,
+.footer-logo {
+  display: flex;
+}
+.footer-logo {
   display: flex;
 }
 .logo h3 {
