@@ -18,6 +18,10 @@
   margin-bottom: 8px;
 }
 
+.contact-container {
+  margin-top: 10%;
+}
+
 @media only screen and (max-width: 1000px) and (max-height: 950px) {
   .logo {
     display: none;
