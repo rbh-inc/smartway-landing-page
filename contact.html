@@ -199,13 +199,25 @@
 
     const ContactForm = () => {
 
-      const [formData, setFormData] = React.useState({ name: '', email: '', message: '', subject: '' })
+      const [formData, setFormData] = React.useState({ name: '', email: '', message: '', subject: '' });
+      const [loaderState, setLoaderState] = React.useState(false);
+
+      // form validation function
+      function formValidation() {
+        for (const key in formData) {
+          if (formData[key] === '') {
+            alert(`Can't leave fields empty.`);
+            return;
+          }
+        }
+        setLoaderState(true);
+        submitBtn(); // POST data to db.
+      }
+
 
       // when send button pressed POST to 
       function submitBtn() {
-
-        alert("Sending Message...");
-        fetch("https://smartway.vercel.app/api/contactUs-Messages-From-LandingPage", {
+        fetch("https://smartway.vercel.app/api/contactUs-messages-from-landingPage", {
           method: 'POST',
 
           headers: {
@@ -216,8 +228,6 @@
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
-            alert("Message sent successfully")
             window.location.reload();
           })
           .catch((error) => {
@@ -259,10 +269,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group mt-3">
-                  <button type="submit" class="button button-contactForm boxed-btn" onClick={(e) => { e.preventDefault(); submitBtn(); }}>
+                <div class="sendBtnDiv form-group mt-3 ">
+                  <button type="submit" class="button button-contactForm boxed-btn" onClick={(e) => { e.preventDefault(); formValidation(); }}>
                     Send
                   </button>
+                  {loaderState && <div class="loader"></div>}
+
                 </div>
               </form>
             </div>
