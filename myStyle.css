@@ -46,6 +46,11 @@
   display: none;
 }
 
+.card-img-size{
+  width: 350px;
+  height: 350px;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
